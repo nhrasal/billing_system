@@ -39,8 +39,8 @@
                           @foreach($employee as $key=>$data)
                         <tr>
                           <th scope="row">{{$loop->iteration}}</th>
-                          <td>{{$data->name ?? ''}}</td>
-                          <td>{{$data->name ?? ''}}</td>
+                          <td><img src="{{asset($data->image ?? '') }}" alt="person" class="img-fluid rounded-circle mCS_img_loaded" height="50px" width="50px"></td>
+                         <td>{{$data->name ?? ''}}</td>
                           <td>{{$data->Designation->name ?? ''}}</td>
                           <td>{{$data->phone ?? ''}}</td>
                           <td>{{$data->email ?? ''}}</td>

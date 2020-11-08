@@ -185,14 +185,14 @@
                 $("#paid").keyup(function(e){
                     var total=$("#total").val();
                     var paid=$("#paid").val();
-                    if(total>=paid){
-                        $("#paid").attr('readonly',true);
-                        $("#paid").attr('max',total);
-                        // $("#paid").val('0');
-                    }
-                    else{
-                        $("#paid").attr('readonly',false);
-                    }
+                    // if(total==paid){
+                    //     $("#paid").attr('readonly',true);
+                    //     $("#paid").attr('max',total);
+                    //     // $("#paid").val('0');
+                    // }
+                    // else{
+                    //     $("#paid").attr('readonly',false);
+                    // }
                     var due= total-paid;
                         $("#due").val(due);
                 })

@@ -56,7 +56,7 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
  Route::get('expense-edit/{id}', 'ExpenseController@edit')->name('expense.edit');
  Route::post('expense-update', 'ExpenseController@update')->name('expense.update');
  Route::get('expense-delete/{id}', 'ExpenseController@SoftDelete')->name('expense.delete');
-
+ Route::get('expense-details-delete/{id}', 'ExpenseController@SoftDeleteExDe')->name('expense.details.delete');
 
 Route::get('profile', 'UserController@Profile')->name('user.profile');
 Route::post('profile-update', 'UserController@ProfileUpdate')->name('user.update');

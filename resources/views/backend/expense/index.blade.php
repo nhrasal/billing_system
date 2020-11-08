@@ -51,8 +51,8 @@
                           <td>
                               <table>
                                   <tr>
-                                      <td><button class="btn btn-sm btn-primary edit" data-id="{{$data->id ?? ''}}"
-                                       ><i class="fa fa-edit"></i>Edit</button></td>
+                                      <td><a href="{{route('expense.edit',$data->id)}}" class="btn btn-sm btn-primary edit" data-id="{{$data->id ?? ''}}"
+                                       ><i class="fa fa-edit"></i>Edit</a></td>
                                       <td><a class="btn btn-sm btn-danger delete" onclick="return confirm('do you want to delete')" href="{{route('expense.delete',$data->id)}}"><i class="fa fa-trash"></i>Delete</a></td>
                                   </tr>
                               </table>
