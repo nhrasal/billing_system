@@ -62,7 +62,6 @@ class ExpenseController extends Controller
             }
 
         }
-        return $expenseDetails;
         Toastr::success('Sub Expense Created','Success');
         return back();
         // return $expense;
@@ -78,7 +77,6 @@ class ExpenseController extends Controller
      public function update(Request $request){
         //  return $request;
         //  $this->validate($request,[
- 
         //      'name'=>'required',
         //  ]);
         $expense=Expense::findOrFail($request->id);
@@ -93,9 +91,9 @@ class ExpenseController extends Controller
         $expense->user_id=Auth::user()->id;
         if($expense->save()){
             foreach ($request->amount as $key=>$fdata){
-                $exDe=ExpenseDetails::where('expense_id',$expense->id)->first();
-                if($exDe){
-                    $expenseDetails= ExpenseDetails::findOrFail($exDe->id);
+                 $exd= ExpenseDetails::where('id',$request->exdetails_id)->first();
+                if($exd){
+                    $expenseDetails= ExpenseDetails::where('id',$request->exdetails_id)->first();
                     $expenseDetails->expense=$request->expense[$key];
                     $expenseDetails->expense_id=$expense->id;
                     $expenseDetails->amount=$request->amount[$key];
@@ -109,13 +107,10 @@ class ExpenseController extends Controller
                     $expenseDetails->date=date('m-d-Y');
                     $expenseDetails->save();
                 }
-               
             }
-
         }
         Toastr::success('Sub Expense Update','Success');
         return back();
-        return $expense;
      }
      public function SoftDelete($id){
         //  return $id;

@@ -5,7 +5,7 @@
 <div class="container">
         <div class="form-outer text-center d-flex align-items-center">
           <div class="form-inner">
-            <div class="logo text-uppercase"><span>Bootstrap</span><strong class="text-primary">Dashboard</strong></div>
+            <div class="logo text-uppercase"><span>Billing</span><strong class="text-primary">Dashboard</strong></div>
             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p> -->
             <form method="POST" acttion="{{ route('login') }}" class="text-left">
             @csrf
@@ -42,7 +42,7 @@
             <small>Do not have an account? </small><a href="{{ route('register') }}" class="signup">Signup</a>
           </div>
           <div class="copyrights text-center">
-            <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external">Bootstrapious</a></p>
+            <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external">Billing System</a></p>
             <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
           </div>
         </div>

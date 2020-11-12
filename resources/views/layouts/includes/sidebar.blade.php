@@ -15,10 +15,10 @@
           <h5 class="sidenav-heading">Main</h5>
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li><a href="{{route('dashboard')}}"> <i class="icon-home"></i>Home</a></li>
-            <li><a href="{{route('category')}}"> <i class="icon-home"></i>Category</a></li>
-            <li><a href="{{route('subcategory')}}"> <i class="icon-home"></i>SubCategory</a></li>
-            <li><a href="{{route('employee')}}"> <i class="icon-home"></i>Employee</a></li>
-            <li><a href="{{route('project')}}"> <i class="icon-home"></i>Project</a></li>
+            <li><a href="{{route('category')}}"> <i class="icon-picture"></i>Category</a></li>
+            <li><a href="{{route('subcategory')}}"> <i class="icon-screen"></i>SubCategory</a></li>
+            <li><a href="{{route('employee')}}"> <i class="icon-user"></i>Employee</a></li>
+            <li><a href="{{route('project')}}"> <i class="icon-form"></i>Project</a></li>
             <!-- <li><a href="{{route('subcategory')}}"> <i class="icon-home"></i>SubCategory</a></li> -->
             <!-- <li><a href="forms.html"> <i class="icon-form"></i>Forms</a></li>
             <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts</a></li>
@@ -27,16 +27,16 @@
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                 <li><a href="{{route('expense')}}">Expense</a></li>
                 <li><a href="{{route('expense.create')}}">Create Expense</a></li>
-                <li><a href="#">Bill Paper</a></li>
               </ul>
             </li>
             <li><a href="#income" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Income </a>
               <ul id="income" class="collapse list-unstyled ">
-                <li><a href="#">Income</a></li>
-                <li><a href="#">Create Income</a></li>
-                <li><a href="#">Income Paper</a></li>
+                <li><a href="{{route('income')}}">Income</a></li>
+                <li><a href="{{route('income.create')}}">Create Income</a></li>
               </ul>
             </li>
+            
+            <li><a href="{{route('admin-user')}}"> <i class="fa fa-user"></i>User Managment</a></li>
             <!-- <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page</a></li> -->
             <li> <a href="#"> <i class="icon-mail"></i>Demo
                 <div class="badge badge-warning">6 New</div></a></li>

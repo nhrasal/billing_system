@@ -75,7 +75,7 @@
                     <div class="new-item-add">
                         <div class="row">
                         @foreach($expenseDetails as $exDeData)
-                        <input type="hidden" name="exdetails_id" value="{{$exDeData->id ?? ''}}">
+                        <input type="hidden" name="exdetails_id[]" value="{{$exDeData->id ?? ''}}">
                             <div class="col-md-5 col-md-5">
                                 <div class="form-group">
                                     <label>Expense Name</label>
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 mb-4">
-                    <a href="#" class="btn btn-info text-light add-new-field">Add another</a>
+                    <!-- <a href="#" class="btn btn-info text-light add-new-field">Add another</a> -->
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -151,6 +151,7 @@
                         var new_item=`
                         <div class="row">
                         <div class="col-md-5 col-md-5">
+                        <input type="hidden" name="exdetails_id[]" value="">
                                     <div class="form-group">
                                     <input type="text"  name="expense[]" placeholder="Expense Name" class="expense form-control ">
                                     
