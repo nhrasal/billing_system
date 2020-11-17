@@ -22,7 +22,7 @@
                                     </div>
                                     <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
 
-                                    <p class="text-muted text-center">{{Auth::user()->name}}</p>
+                                    <p class="text-muted text-center">{{Auth::user()->role->name ?? ''}}</p>
                                 </div>
                             </div>
                             <!-- /.card-body -->

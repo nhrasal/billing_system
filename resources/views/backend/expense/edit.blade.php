@@ -16,10 +16,10 @@
             <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                  <h4>Expense Edit Form</h4>
+                  <h4> Note Sheet Edit Form</h4>
                 </div>
                 <div class="card-body">
-                <form id="expense-form" action="{{route('expense.update')}}" method="post">
+                <form id="expense-form" action="{{route('note.sheet.update')}}" method="post">
                     @csrf
                     <input type="hidden" name="id"  value="{{$expense->id}}">
                 <div class="row">
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1 col-md-2 ">
-                                <a href="{{route('expense.details.delete',$exDeData->id)}}" class="btn btn-sm btn-danger text-light" style="margin-top:35px"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('note.sheet.details.delete',$exDeData->id)}}" class="btn btn-sm btn-danger text-light" style="margin-top:35px"><i class="fa fa-trash"></i></a>
                             </div>
                         @endforeach
                         </div>
@@ -103,18 +103,7 @@
                         <input type="text" id="total" value="{{$expense->total_expense ?? '0'}}" name="total_expense" placeholder="Total" class="form-control @error('description') is-invalid @enderror" readonly>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                        <label>Paid Expense</label>
-                        <input type="text" id="paid" value="{{$expense->paid ?? '0'}}" name="paid" placeholder="Paid" class="form-control @error('description') is-invalid @enderror" >
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                        <label>Due Expense</label>
-                        <input type="text" id="due" name="due" value="{{$expense->due ?? '0'}}" placeholder="due" class="form-control @error('description') is-invalid @enderror" readonly>
-                        </div>
-                    </div>
+                  
                     <div class="col-md-4">
                         <div class="form-group">
                         <label>Comments </label>

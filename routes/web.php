@@ -53,13 +53,17 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
  Route::post('project-update', 'ProjectController@update')->name('project.update');
  Route::get('project-delete/{id}', 'ProjectController@SoftDelete')->name('project.delete');
 
- Route::get('expanse', 'ExpenseController@data')->name('expense');
- Route::get('expanse-create', 'ExpenseController@Create')->name('expense.create');
- Route::post('expanse-store', 'ExpenseController@store')->name('expense.store');
- Route::get('expanse-edit/{id}', 'ExpenseController@edit')->name('expense.edit');
- Route::post('expanse-update', 'ExpenseController@update')->name('expense.update');
- Route::get('expanse-delete/{id}', 'ExpenseController@SoftDelete')->name('expense.delete');
- Route::get('expanse-details-delete/{id}', 'ExpenseController@SoftDeleteExDe')->name('expense.details.delete');
+ Route::get('note-sheet', 'ExpenseController@data')->name('note.sheet');
+ Route::get('note-sheet-create', 'ExpenseController@Create')->name('note.sheet.create');
+ Route::post('note-sheet-store', 'ExpenseController@store')->name('note.sheet.store');
+ Route::get('note-sheet-edit/{id}', 'ExpenseController@edit')->name('note.sheet.edit');
+ Route::post('note-sheet-update', 'ExpenseController@update')->name('note.sheet.update');
+ Route::get('note-sheet-delete/{id}', 'ExpenseController@SoftDelete')->name('note.sheet.delete');
+ Route::get('note-sheet-details-delete/{id}', 'ExpenseController@SoftDeleteExDe')->name('note.sheet.details.delete');
+
+ Route::get('pendding-expense', 'ExpenseController@penddingData')->name('processing.expense');
+ Route::get('pendding-details/{id}', 'ExpenseController@penddingDetails')->name('pendding.expanse.details');
+
 
 Route::get('profile', 'UserController@Profile')->name('user.profile');
 Route::post('profile-update', 'UserController@ProfileUpdate')->name('user.update');

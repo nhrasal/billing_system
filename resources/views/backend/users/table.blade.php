@@ -5,7 +5,6 @@
         <th data-priority="3">User Name</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>Vehicle Reg No.</th>
         <th>Address</th>
         <th  data-priority="5">Status</th>
         <th  data-priority="6">Action</th>

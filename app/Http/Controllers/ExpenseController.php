@@ -9,6 +9,7 @@ use App\Category;
 use App\SubCategory;
 use App\Employee;
 use App\ExpenseDetails;
+use App\NoteSheetProcess;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,15 @@ class ExpenseController extends Controller
     public function data(){
         $expense=Expense::where('delete_status',1)->paginate(10);
         return view('backend.expense.index',compact('expense'));
+    }
+    public function penddingData(){
+        $expense=Expense::where('delete_status',1)->paginate(10);
+        return view('backend.expense.processingExpense',compact('expense'));
+    }
+    public function penddingDetails($id){
+        $expense=Expense::findOrFail($id);
+        $expenseDetails=ExpenseDetails::where('delete_status',1)->where('expense_id',$id)->get();
+        return view('backend.expense.processingExpenseDetails',compact('expense','expenseDetails'));
     }
     public function Create(){
        $category=Category::where('delete_status',1)->get();
@@ -31,7 +41,6 @@ class ExpenseController extends Controller
             'subcategory_id'=>'required',
             'employee_id'=>'required',
             'total_expense'=>'required',
-            'paid'=>'required',
         ]);
 
         $total=$request->total_expense;
@@ -52,6 +61,9 @@ class ExpenseController extends Controller
         $expense->date=date('m-d-Y');
         $expense->user_id=Auth::user()->id;
         if($expense->save()){
+            $noteSheetProcess=new NoteSheetProcess();
+            $noteSheetProcess->notesheet_id=$expense->id;
+            $noteSheetProcess->save();
             foreach ($request->amount as $key=>$fdata){
                 $expenseDetails=new ExpenseDetails();
                 $expenseDetails->expense=$request->expense[$key];

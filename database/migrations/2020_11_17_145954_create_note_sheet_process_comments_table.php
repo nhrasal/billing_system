@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDesignationsTable extends Migration
+class CreateNoteSheetProcessCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDesignationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('designations', function (Blueprint $table) {
+        Schema::create('note_sheet_process_comments', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('details')->nullable();
-            $table->string('delete_status')->default(1);
+            $table->string('notesheet_id')->nullable();
+            $table->string('comments')->nullable();
+            $table->string('delete_status')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateDesignationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('designations');
+        Schema::dropIfExists('note_sheet_process_comments');
     }
 }

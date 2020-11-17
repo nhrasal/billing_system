@@ -27,6 +27,7 @@
                           <th>SL</th>
                           <th> Image</th>
                           <th> Name</th>
+                          <th> Role</th>
                           <th> Phone</th>
                           <th> Email</th>
                           <th> Action</th>
@@ -39,10 +40,9 @@
                           <th scope="row">{{$loop->iteration}}</th>    
                           <td><img src="{{asset($data->image ?? '') }}" alt="person" class="img-fluid rounded-circle mCS_img_loaded" height="50px" width="50px"></td>
                           <td>{{$data->name ?? ''}}</td>
+                          <td>{{$data->role->name ?? ''}}</td>
                           <td>{{$data->phone ?? ''}}</td>
                           <td>{{$data->email ?? ''}}</td>
-                          <td>{{$data->address ?? ''}}</td>
-                          <td>{{$data->joining_date ?? ''}}</td>
                           <td>
                               <table>
                                   <tr>

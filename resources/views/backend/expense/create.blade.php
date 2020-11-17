@@ -5,7 +5,7 @@
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-            <li class="breadcrumb-item active">Expense</li>
+            <li class="breadcrumb-item active">Note Sheet</li>
             <li class=" offset-10"> <button class=" btn btn-sm btn-success create-category">Create</button></li>
           </ul>
         </div>
@@ -16,10 +16,10 @@
             <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                  <h4>Expense Create Form</h4>
+                  <h4> Create Note Sheet Form</h4>
                 </div>
                 <div class="card-body">
-                <form id="expense-form" action="{{route('expense.store')}}" method="post">
+                <form id="expense-form" action="{{route('note.sheet.store')}}" method="post">
                     @csrf
                 <div class="row">
                     <div class="col-md-4">
@@ -101,20 +101,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                        <label>Paid Expense</label>
-                        <input type="text" id="paid" name="paid" placeholder="Paid" class="form-control @error('description') is-invalid @enderror" >
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                        <label>Due Expense</label>
-                        <input type="text" id="due" name="due" placeholder="due" class="form-control @error('description') is-invalid @enderror" readonly>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
                         <label>Comments </label>
-                        <input type="text" id="description" name="comments" placeholder="due" class="form-control @error('description') is-invalid @enderror" >
+                        <input type="text" id="description" name="comments" placeholder="comments" class="form-control @error('description') is-invalid @enderror" >
                         </div>
                     </div>
                 </div>

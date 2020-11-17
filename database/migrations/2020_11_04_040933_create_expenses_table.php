@@ -24,6 +24,7 @@ class CreateExpensesTable extends Migration
             $table->string('date')->nullable();
             $table->string('comments')->nullable();
             $table->string('user_id')->nullable();
+            $table->string('status')->nullable();
             $table->string('delete_status')->default(1);
             $table->timestamps();
         });
