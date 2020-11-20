@@ -35,9 +35,34 @@
                           <th> Sub Categorye</th>
                           <td>{{$expense->SubCategory->name ?? ''}}</td>
                         </tr>
+                        <tr>
+                          <th>Chairment Status</th>
+                        <td>@if($noteSheet->chairmen_status==1)<p class="text-success">Accepted</p>@elseif($noteSheet->chairmen_status==0)<p class="text-danger">Rejected</p>@else<p class="text-info">Pendding</p> @endif
+                         <th>Comments</th>
+                          <td>{{$noteComments->where('admin_id',3)->first()->comments?? ''}}</td>
+                        </tr>
+                        <tr>
+                          <th>Managing Director</th>
+                          <td>@if($noteSheet->managing_director_status==1)<p class="text-success">Accepted</p>@elseif($noteSheet->managing_director_status==0)<p class="text-danger">Rejected</p>@else<p class="text-info">Pendding</p> @endif
+                         <th>Comments</th>
+                          <td>{{$noteComments->where('admin_id',5)->first()->comments?? ''}}</td>
+                        </tr>
+                        <tr>
+                          <th>Director Finance Status</th>
+                          <td>@if($noteSheet->director_finance_status==1)<p class="text-success">Accepted</p>@elseif($noteSheet->director_finance_status==0)<p class="text-danger">Rejected</p>@else<p class="text-info">Pendding</p> @endif
+                       
+                          <th>Comments</th>
+                          <td>{{$noteComments->where('admin_id',7)->first()->comments?? ''}}</td>
+                        </tr>
+                        <tr>
+                          <th>Director Admin</th>
+                          <td>@if($noteSheet->director_admin_status==1)<p class="text-success">Accepted</p>@elseif($noteSheet->director_admin_status==0)<p class="text-danger">Rejected</p>@else<p class="text-info">Pendding</p> @endif
+                        </td>
+                          <th>Comments</th>
+                          <td>{{$noteComments->where('admin_id',8)->first()->comments ?? ''}}</td>
+                        </tr>
                       </thead>
                     </table>
-                 
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -55,7 +80,6 @@
                           <th scope="row">{{$loop->iteration}}</th>
                           <td>{{$data->expense ?? ''}}</td>
                           <td>{{$data->amount ?? ''}}</td>
-                         
                         </tr>
                         @endforeach
                       </tbody>
@@ -68,18 +92,90 @@
                      </tfoot>
                     </table>
                   </div>
+                  @if(Auth::user()->role_id==2 && $noteSheet->chairmen_status==null && $noteSheet->managing_director_status!=null  && $noteSheet->director_finance_status!=null && $noteSheet->director_admin_status!=null)
                   <div class="row">
                     <div class="col-sm-6 col-md-2">
-                      <a href="#" class="btn  btn-success">Accept</a>
+                      <button id="accept-btn" class="btn  btn-success">Accept</button>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                      <a href="#" class="btn  btn-danger">Reject</a> 
+                    </div>
+                  </div>
+                  @elseif(Auth::user()->role_id==3 && $noteSheet->chairmen_status==null && $noteSheet->managing_director_status==null  && $noteSheet->director_finance_status!=null && $noteSheet->director_admin_status!=null)
+                  <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                      <button id="accept-btn" class="btn  btn-success">Accept</button>
                     </div>
                     <div class="col-sm-6 col-md-2">
                       <a href="#" class="btn  btn-danger">Reject</a>
                     </div>
                   </div>
+                  @elseif(Auth::user()->role_id==4 && $noteSheet->chairmen_status==null && $noteSheet->managing_director_status==null  && $noteSheet->director_finance_status==null && $noteSheet->director_admin_status!=null)
+                  <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                      <button id="accept-btn" class="btn  btn-success">Accept</button>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                      <a href="#" class="btn  btn-danger">Reject</a>
+                    </div>
+                  </div>
+                  @elseif(Auth::user()->role_id==5 && $noteSheet->director_admin_status==null)
+                  <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                      <button id="accept-btn" class="btn  btn-success">Accept</button>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                      <a href="#" class="btn  btn-danger">Reject</a>
+                    </div>
+                  </div>
+                  @elseif(Auth::user()->role_id==6 && $noteSheet->chairmen_status!=null && $noteSheet->managing_director_status!=null  && $noteSheet->director_finance_status!=null && $noteSheet->director_admin_status!=null)
+                  <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                      <button id="accept-btn" class="btn  btn-success">Accept</button>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                      <a href="#" class="btn  btn-danger">Reject</a>
+                    </div>
+                  </div> 
+                 @endif
+                <div class="d-none" id="accept-form">
+                <form method="post" action="{{route('accept.expense',$expense->id)}}" >
+                    @csrf
+                    <input type="hidden" id="sub-category-id" name="id" value="">
+                <div class="form-group">
+                    <label>Comments</label>
+                    <input type="text" id="comments" name="comments" placeholder="comments" class="form-control">
+                  
                 </div>
+                
+                <div class="form-group">       
+                   <button class="btn btn-primary">Confirm</button>
+                   <a href="#" id="cancel-btn" class="btn btn-danger">Cancel</a>
+                </div>
+                </form>
+                </div>
+               </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+@endsection
+@section('js')
+
+<script>
+    $(document).ready(function(){
+        $("#accept-btn").click(function(){
+          $("#accept-form").removeClass('d-none');
+          $("#accept-btn").addClass('d-none');
+
+        })
+        $("#cancel-btn").click(function(){
+          $("#accept-form").addClass('d-none');
+          $("#accept-btn").removeClass('d-none');
+
+        })
+       
+    })
+</script>
 @endsection

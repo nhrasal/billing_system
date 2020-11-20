@@ -65,7 +65,7 @@
                             <th>Total Expense</th>
                             <th>Date</th>
                             <th> Action</th>
-                            </tr>
+                          </tr>
                     </tfoot>
                     </table>
                   </div>

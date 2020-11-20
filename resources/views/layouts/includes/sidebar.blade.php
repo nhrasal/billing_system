@@ -16,6 +16,7 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li><a href="{{route('dashboard')}}"> <i class="icon-home"></i>Home</a></li>
             <li><a href="{{route('processing.expense')}}"> <i class="icon-picture"></i>Pendding Expanse</a></li>
+            <li><a href="{{route('approve.expense')}}"> <i class="icon-picture"></i>Approve Expanse</a></li>
             <li><a href="{{route('category')}}"> <i class="icon-picture"></i>Category</a></li>
             <li><a href="{{route('subcategory')}}"> <i class="icon-screen"></i>SubCategory</a></li>
             <li><a href="{{route('employee')}}"> <i class="icon-user"></i>Employee</a></li>

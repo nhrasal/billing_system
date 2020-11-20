@@ -61,14 +61,15 @@
                         @endforeach
                       </tbody>
                       <tfoot> 
-                      <tr>
+                        <tr>
                           <th>SL</th>
                           <th> Image</th>
                           <th> Name</th>
+                          <th> Role</th>
                           <th> Phone</th>
                           <th> Email</th>
                           <th> Action</th>
-                        </tr>    
+                        </tr>
                     </tfoot>
                     </table>
                   </div>

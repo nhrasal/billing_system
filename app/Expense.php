@@ -16,4 +16,7 @@ class Expense extends Model
     public function Employee(){
         return $this->belongsTo(Employee::class,'employee_id');
     }
+    public function NoteSheet(){
+        return $this->hasOne(NoteSheetProcess::class,'notesheet_id');
+    }
 }

@@ -64,6 +64,8 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
  Route::get('pendding-expense', 'ExpenseController@penddingData')->name('processing.expense');
  Route::get('pendding-details/{id}', 'ExpenseController@penddingDetails')->name('pendding.expanse.details');
 
+ Route::post('accept-expense/{id}', 'ExpenseController@acceptExpense')->name('accept.expense');
+ Route::get('accept-expense', 'ExpenseController@approveExpense')->name('approve.expense');
 
 Route::get('profile', 'UserController@Profile')->name('user.profile');
 Route::post('profile-update', 'UserController@ProfileUpdate')->name('user.update');

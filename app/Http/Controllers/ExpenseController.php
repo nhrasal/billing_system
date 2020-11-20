@@ -9,6 +9,7 @@ use App\Category;
 use App\SubCategory;
 use App\Employee;
 use App\ExpenseDetails;
+use App\NoteSheetProcessComment;
 use App\NoteSheetProcess;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
@@ -16,17 +17,23 @@ use Illuminate\Support\Facades\Auth;
 class ExpenseController extends Controller
 {
     public function data(){
-        $expense=Expense::where('delete_status',1)->paginate(10);
+         $expense=Expense::with('NoteSheet')->where('delete_status',1)->get();
         return view('backend.expense.index',compact('expense'));
     }
     public function penddingData(){
-        $expense=Expense::where('delete_status',1)->paginate(10);
+        $expense=Expense::where('delete_status',1)->where('status',0)->get();
         return view('backend.expense.processingExpense',compact('expense'));
     }
     public function penddingDetails($id){
         $expense=Expense::findOrFail($id);
         $expenseDetails=ExpenseDetails::where('delete_status',1)->where('expense_id',$id)->get();
-        return view('backend.expense.processingExpenseDetails',compact('expense','expenseDetails'));
+        $noteSheet=NoteSheetProcess::where('notesheet_id',$id)->first();
+        $noteComments=NoteSheetProcessComment::where('notesheet_id',$id)->get();
+      return view('backend.expense.processingExpenseDetails',compact('expense','expenseDetails','noteComments','noteSheet'));
+    }
+    public function approveExpense(){
+        $expense=Expense::with('NoteSheet')->where('delete_status',1)->where('status',1)->get();
+        return view('backend.expense.approveExpense',compact('expense'));
     }
     public function Create(){
        $category=Category::where('delete_status',1)->get();
@@ -149,5 +156,39 @@ class ExpenseController extends Controller
     $expense->save();
     Toastr::success('Sub Expense Details Delete Successful','Success');
      return back();
+ }
+ public function acceptExpense(Request $request,$id){
+
+   $expense=Expense::findOrFail($id);
+   $authID=Auth::user();
+   
+   $noteSheetProcess=NoteSheetProcess::where('notesheet_id',$id)->first();
+    if($authID->role_id==2){
+        $noteSheetProcess->chairmen_status=1;
+    }
+   else if($authID->role_id==3){
+    $noteSheetProcess->managing_director_status=1;
+   }
+   else if($authID->role_id==4){
+    $noteSheetProcess->director_finance_status=1;
+   }
+   else if($authID->role_id==5){
+    $noteSheetProcess->director_admin_status=1;
+   }
+   else if($authID->role_id==6){
+    $noteSheetProcess->accounts_admin_status=1;
+   }else{
+    Toastr::error('You request canceled','error');
+    return back();
+   }
+
+   $noteSheetProcess->save();
+   $noteSheetComments=new NoteSheetProcessComment();
+   $noteSheetComments->admin_id=Auth::user()->id;
+   $noteSheetComments->notesheet_id=$id;
+   $noteSheetComments->comments=$request->comments;
+   $noteSheetComments->save();
+   Toastr::success('You request accepted','Success');
+   return back();
  }
 }
