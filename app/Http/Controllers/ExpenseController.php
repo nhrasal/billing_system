@@ -177,6 +177,9 @@ class ExpenseController extends Controller
    }
    else if($authID->role_id==6){
     $noteSheetProcess->accounts_admin_status=1;
+    $noteSheetProcess->clearence_status=1;
+    $expense->status=1;
+    $expense->save();
    }else{
     Toastr::error('You request canceled','error');
     return back();
@@ -190,5 +193,20 @@ class ExpenseController extends Controller
    $noteSheetComments->save();
    Toastr::success('You request accepted','Success');
    return back();
+ }
+ public function cancelExpense(Request $request,$id){
+    $expense=Expense::findOrFail($id);
+    $noteSheetProcess=NoteSheetProcess::where('notesheet_id',$id)->first();
+    $noteSheetProcess->clearence_status=1;
+    $expense->status=0;
+    $expense->save();
+    $noteSheetProcess->save();
+    $noteSheetComments=new NoteSheetProcessComment();
+    $noteSheetComments->admin_id=Auth::user()->id;
+    $noteSheetComments->notesheet_id=$id;
+    $noteSheetComments->comments=$request->comments;
+    $noteSheetComments->save();
+    Toastr::error('Expanse canceled','error');
+    return back();
  }
 }

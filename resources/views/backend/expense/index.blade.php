@@ -30,6 +30,7 @@
                           <th>Category</th>
                           <th>Sub Category</th>
                           <th>Total Expense</th>
+                          <th>status</th>
                           <th>Date</th>
                           <th> Action</th>
                         </tr>
@@ -43,6 +44,7 @@
                           <td>{{$data->Category->name ?? ''}}</td>
                           <td>{{$data->SubCategory->name ?? ''}}</td>
                           <td>{{$data->total_expense ?? '0'}}</td>
+                          <td>{{$data->status==1 ? 'accepted' : 'pendding'}}</td>
                           <td>{{$data->date ?? ''}}</td>
                           <td>
                               <table>
@@ -66,6 +68,7 @@
                             <th>Category</th>
                             <th>Sub Category</th>
                             <th>Total Expense</th>
+                          <th>status</th>
                             <th>Date</th>
                             <th> Action</th>
                             </tr>
