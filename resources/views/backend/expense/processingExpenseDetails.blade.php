@@ -37,27 +37,56 @@
                         </tr>
                         <tr>
                           <th>Chairment Status</th>
-                        <td>@if($noteSheet->chairmen_status==1)<p class="text-success">Accepted</p>@endif @if($noteSheet->chairmen_status==0)<p class="text-danger">Rejected</p>@endif @if($noteSheet->chairmen_status=='null')<p class="text-info">Pendding</p> @endif
+                        <td>
+                        @if($noteSheet->chairmen_status=='1')
+                        <p class="text-success">Accepted</p>
+                        @elseif($noteSheet->chairmen_status=='0')
+                        <p class="text-danger">Rejected </p>
+                         @else
+                         <p class="text-info">Pendding</p> 
+                        @endif</td> 
                          <th>Comments</th>
                           <td>{{$noteComments->where('admin_id',3)->first()->comments?? ''}}</td>
                         </tr>
                         <tr>
                           <th>Managing Director</th>
-                          <td>@if($noteSheet->managing_director_status==1)<p class="text-success">Accepted</p>@endif @if($noteSheet->managing_director_status==0)<p class="text-danger">Rejected</p>@endif @if($noteSheet->managing_director_status=='null')<p class="text-info">Pendding</p> @endif
+                          <td>
+                          @if($noteSheet->managing_director_status=='1')
+                        <p class="text-success">Accepted</p>
+                        @elseif($noteSheet->managing_director_status=='0')
+                        <p class="text-danger">Rejected </p>
+                         @else
+                         <p class="text-info">Pendding</p> 
+                        @endif</td>
+                         
                          <th>Comments</th>
                           <td>{{$noteComments->where('admin_id',5)->first()->comments?? ''}}</td>
                         </tr>
                         <tr>
                           <th>Director Finance Status</th>
-                          <td>@if($noteSheet->director_finance_status==1)<p class="text-success">Accepted</p>@endif @if($noteSheet->director_finance_status==0)<p class="text-danger">Rejected</p>@endif @if($noteSheet->director_finance_status=='null')<p class="text-info">Pendding</p> @endif
-                       
+                          <td>
+                          @if($noteSheet->director_finance_status=='1')
+                        <p class="text-success">Accepted</p>
+                        @elseif($noteSheet->director_finance_status=='0')
+                        <p class="text-danger">Rejected </p>
+                         @else
+                         <p class="text-info">Pendding</p> 
+                        @endif
+                        </td>
                           <th>Comments</th>
                           <td>{{$noteComments->where('admin_id',7)->first()->comments?? ''}}</td>
                         </tr>
                         <tr>
                           <th>Director Admin</th>
-                          <td>@if($noteSheet->director_admin_status==1)<p class="text-success">Accepted</p>@endif @if($noteSheet->director_admin_status==0)<p class="text-danger">Rejected</p>@endif @if($noteSheet->director_admin_status=='null')<p class="text-info">Pendding</p> @endif
-                        </td>
+                          <td>
+                          @if($noteSheet->director_admin_status=='1')
+                        <p class="text-success">Accepted</p>
+                        @elseif($noteSheet->director_admin_status=='0')
+                        <p class="text-danger">Rejected </p>
+                         @else
+                         <p class="text-info">Pendding</p> 
+                        @endif
+                      </td>
                           <th>Comments</th>
                           <td>{{$noteComments->where('admin_id',8)->first()->comments ?? ''}}</td>
                         </tr>
@@ -92,7 +121,7 @@
                      </tfoot>
                     </table>
                   </div>
-                  @if(Auth::user()->role_id==2 && $noteSheet->chairmen_status==null  &&  $noteSheet->chairmen_status!=0  && $noteSheet->managing_director_status!=null  && $noteSheet->director_finance_status!=null && $noteSheet->director_admin_status!=null)
+                  @if(Auth::user()->role_id==2 && $noteSheet->chairmen_status==null  &&  $noteSheet->chairmen_status!='0'  && $noteSheet->managing_director_status!=null  && $noteSheet->director_finance_status!=null && $noteSheet->director_admin_status!=null)
                   <div class="row">
                     <div class="col-sm-6 col-md-2">
                       <button id="accept-btn" class="btn  btn-success">Accept</button>
@@ -101,7 +130,8 @@
                       <button id="reject-btn" class="btn  btn-danger">Reject</button> 
                     </div>
                   </div>
-                  @elseif(Auth::user()->role_id==3 && $noteSheet->chairmen_status==null && $noteSheet->managing_director_status==null &&$noteSheet->managing_director_status!=0  && $noteSheet->director_finance_status!=null && $noteSheet->director_admin_status!=null)
+                  @elseif(Auth::user()->role_id==3 && $noteSheet->chairmen_status==null && $noteSheet->managing_director_status==null && $noteSheet->managing_director_status!=0  && $noteSheet->director_finance_status!=null && $noteSheet->director_admin_status!=null)
+                  
                   <div class="row">
                     <div class="col-sm-6 col-md-2">
                       <button id="accept-btn" class="btn  btn-success">Accept</button>
@@ -119,7 +149,7 @@
                       <button id="reject-btn" class="btn  btn-danger">Reject</button>
                     </div>
                   </div>
-                  @elseif(Auth::user()->role_id==5 && $noteSheet->director_admin_status==null && $noteSheet->director_admin_status!=0)
+                  @elseif(Auth::user()->role_id==5 && $noteSheet->director_admin_status==null && $noteSheet->director_admin_status!='0')
                   <div class="row">
                     <div class="col-sm-6 col-md-2">
                       <button id="accept-btn" class="btn  btn-success">Accept</button>
@@ -138,6 +168,7 @@
                     </div>
                   </div> 
                  @endif
+                 
                  <div class="d-none" id="cancel-form">
                     <h4>Reject comments</h4>
                     <form method="post" action="{{route('cancel.expense',$expense->id)}}" >

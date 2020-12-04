@@ -21,7 +21,8 @@ class ExpenseController extends Controller
         return view('backend.expense.index',compact('expense'));
     }
     public function penddingData(){
-        $expense=Expense::where('delete_status',1)->where('status',0)->get();
+        
+          $expense=Expense::where('delete_status',1)->where('status',0)->get();
         return view('backend.expense.processingExpense',compact('expense'));
     }
     public function penddingDetails($id){
@@ -208,5 +209,8 @@ class ExpenseController extends Controller
     $noteSheetComments->save();
     Toastr::error('Expanse canceled','error');
     return back();
+ }
+ public function printExpanse($id){
+     return view('backend.invoice.expanseINvoice');
  }
 }

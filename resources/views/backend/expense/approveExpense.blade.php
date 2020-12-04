@@ -45,7 +45,7 @@
                           <td>{{$data->total_expense ?? '0'}}</td>
                           <td>{{$data->date ?? ''}}</td>
                           <td>
-                             <a href="#" class="btn btn-sm btn-danger">Print Invoice</a>
+                             <a href="{{route('print.expense',$data->id)}}" class="btn btn-sm btn-danger"><i class="fa fa-print"></i>  Print Invoice</a>
                           </td>
                         </tr>
                         @endforeach

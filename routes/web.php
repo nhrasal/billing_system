@@ -67,6 +67,7 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
  Route::post('accept-expense/{id}', 'ExpenseController@acceptExpense')->name('accept.expense');
  Route::post('cancel-expense/{id}', 'ExpenseController@cancelExpense')->name('cancel.expense');
  Route::get('accept-expense', 'ExpenseController@approveExpense')->name('approve.expense');
+ Route::get('expanse-invoice/{id}', 'ExpenseController@printExpanse')->name('print.expense');
 
 Route::get('profile', 'UserController@Profile')->name('user.profile');
 Route::post('profile-update', 'UserController@ProfileUpdate')->name('user.update');
